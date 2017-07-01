@@ -50,8 +50,12 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     * update the state by using Extended Kalman Filter equations
   */
   //#######################################   
+  // CONVERT THE CURRENT STATE x_ TO POLAR COORDINATES:
+  // RADIUS rho
   float rho = sqrt(x_[0]*x_[0] + x_[1]*x_[1]);
+  // ANGLE phi
   float phi = atan2(x_[1], x_[0]);
+  // R VELOCITY
   float rhodot;
   if (fabs(rho<0.0001)){
     rhodot = 0.0;
@@ -64,14 +68,19 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   z_pred << rho, phi, rhodot;
 
   VectorXd y = z - z_pred;
-  
-  while (y(1)>3.1416) {
-y(1) -= 2 * 3.1416;
-}
-while (y(1)<-3.1416) {
-y(1) += 2 * 3.1416;
-}
-  
+  // Perform normalization when you subtract 2 angles
+  // to ensure angle is in the range -pi to +pi
+  // After taking the difference of the new RADAR measurement 
+  // AND the state (converted to polar coordinates)
+  // y(1) is rho (the angle of the RADAR measurement)
+  //
+  // OPTION #1 (MORE CLEAR)
+  //  while (y(1)>+3.1416) { y(1) -= 2 * 3.1416; }
+  //  while (y(1)<-3.1416) { y(1) += 2 * 3.1416; }
+  //
+  // OPTION #2 (CLEANER)
+  y(1) = atan2(sin(y(1)),cos(y(1)));
+ 
   MatrixXd S = H_ * P_ * H_.transpose() + R_;
   MatrixXd K = P_ * H_.transpose() * S.inverse();
 

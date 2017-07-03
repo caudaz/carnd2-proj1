@@ -21,9 +21,9 @@ On the above case, the existing measurement in **BLACK**, is “fused”
 with the new measurement in **BLUE**, to create a new measurement mean
 and distribution in **RED**. The formulas used are:
 
-$$u^{'} = \ \frac{r^{2}u + \sigma^{2}\gamma}{r^{2} + \ \sigma\hat{}2}$$
+u&#39;=r2u+σ2γr2+σ2
 
-$${\sigma^{2}}^{'} = \ \frac{1}{\frac{1}{r^{2}} + \frac{1}{\sigma^{2}}}$$
+σ^2&#39;=11r2+1σ2
 
 1.  KF can also be used to predict the new location of an object based
     on it’s current speed:
@@ -34,9 +34,9 @@ The current estimate is shown in **BLUE**, the speed estimate(converted
 to traveled distance) is shown in **GREEN**, and the new estimated
 location is shown in **RED**. The formulas are:
 
-$$\mu^{'} = \mu + u$$
+μ&#39;=μ+u
 
-$${\sigma^{2}}^{'} = \ \sigma^{2} + r^{2}$$
+σ^2&#39;=σ^2+r^2
 
 **KF IN 2D**
 

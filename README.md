@@ -21,22 +21,18 @@ On the above case, the existing measurement in **BLACK**, is “fused”
 with the new measurement in **BLUE**, to create a new measurement mean
 and distribution in **RED**. The formulas used are:
 
-u&#39;=r2u+σ2γr2+σ2
-
-σ^2&#39;=11r2+1σ2
+![](./media/image2.jpeg)
 
 1.  KF can also be used to predict the new location of an object based
     on it’s current speed:
 
-![](./media/image2.jpeg)
+![](./media/image3.jpeg)
 
 The current estimate is shown in **BLUE**, the speed estimate(converted
 to traveled distance) is shown in **GREEN**, and the new estimated
 location is shown in **RED**. The formulas are:
 
-μ&#39;=μ+u
-
-σ^2&#39;=σ^2+r^2
+![](./media/image4.jpeg)
 
 **KF IN 2D**
 
@@ -45,7 +41,7 @@ sensor-fusion-ekf-reference.pdf), in which the state vector is defined
 as position Px, Py and velocities Vx, Vy. The prediction and update step
 formulas are shown below:
 
-![](./media/image3.jpeg)
+![](./media/image5.jpeg)
 
 **WHY EXTENDED KF?**
 
@@ -63,14 +59,14 @@ calculated to linearize it. To accomplish this, partials are used
 
 The EKF is compared below to the formulas of the KF:
 
-![](./media/image4.jpeg){width="4.048611111111111in"
+![](./media/image6.jpeg){width="4.048611111111111in"
 height="2.0743438320209973in"}
 
 **CODE FLOWCHART**
 
 The project code follows the flowchart shown in UDACITY’s website:
 
-![](./media/image5.png){width="4.597222222222222in"
+![](./media/image7.png){width="4.597222222222222in"
 height="2.8819444444444446in"}
 
 The above flowchart is put into C++ code by using 4 main files:
@@ -200,13 +196,13 @@ to be checked to ensure numerical accuracy of the code:
     was creating errors close to the 90degree vertical line(see below
     image):
 
-    ![](./media/image6.jpeg)
+    ![](./media/image8.jpeg)
 
     Since y\[1\] is the difference of 2 angles, it is necessary to
     “normalize” the difference to ensure that the range of y stays
     within the boundaries of –pi and +pi.
 
-    ![](./media/image7.png)
+    ![](./media/image9.png)
 
     There are 2 ways of doing this:
 
@@ -225,12 +221,12 @@ The accuracy of the KF computations is calculated using a Root Mean
 Squared (RMS) formula with respect to the ground truth of the moving
 vehicle:
 
-![](./media/image8.jpeg)
-
-The RMSE values for the Dataset 1 are shown below:
-
-![](./media/image9.jpeg)
-
-The RMSE values for the Dataset 1 are shown below:
-
 ![](./media/image10.jpeg)
+
+The RMSE values for the Dataset 1 are shown below:
+
+![](./media/image11.jpeg)
+
+The RMSE values for the Dataset 1 are shown below:
+
+![](./media/image12.jpeg)

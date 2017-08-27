@@ -1,15 +1,15 @@
-**Self-Driving Car Engineer Nanodegree**
+# **Self-Driving Car Engineer Nanodegree** #
 
-**Term2 – Project1: Extended Kalman Filter**
+# **Term2 – Project1: Extended Kalman Filter** #
 
-**INTRODUCTION**
+## **INTRODUCTION** ##
 
 The purpose of the project is to estimate the location of a moving
 vehicle using 2 given measurements: LIDAR and RADAR. These 2
 measurements can be read at any point in time. The estimate will be
 computed using a Kalman Filter (KF) and an Extended Kalman Filter (EKF).
 
-**BASIC KF FILTERS IN 1D**
+## **BASIC KF FILTERS IN 1D** ##
 
 1.  KF can be used to “fuse” 2 measurements using the measurement values
     and uncertainties (on this case the covariance of the standard
@@ -34,7 +34,7 @@ location is shown in **RED**. The formulas are:
 
 ![](./media/image4.jpeg)
 
-**KF IN 2D**
+## **KF IN 2D** ##
 
 KF can be extended to a 2D space (formulas are in document
 sensor-fusion-ekf-reference.pdf), in which the state vector is defined
@@ -43,7 +43,7 @@ formulas are shown below:
 
 ![](./media/image5.jpeg)
 
-**WHY EXTENDED KF?**
+## **WHY EXTENDED KF?** ##
 
 Since in 2D the predicted state consists of 4 variables: Px, Py, Vx, Vy,
 it needs to be converted in to the same variables that we will be
@@ -59,15 +59,13 @@ calculated to linearize it. To accomplish this, partials are used
 
 The EKF is compared below to the formulas of the KF:
 
-![](./media/image6.jpeg){width="4.048611111111111in"
-height="2.0743438320209973in"}
+![](./media/image6.jpeg)
 
-**CODE FLOWCHART**
+## **CODE FLOWCHART** ##
 
 The project code follows the flowchart shown in UDACITY’s website:
 
-![](./media/image7.png){width="4.597222222222222in"
-height="2.8819444444444446in"}
+![](./media/image7.png)
 
 The above flowchart is put into C++ code by using 4 main files:
 
@@ -179,7 +177,7 @@ MatrixXd I = MatrixXd::Identity(x\_.size(),x\_.size());
 
 P\_ = (I - K \* H\_) \* P\_;
 
-**NUMERICAL CONSIDERATIONS**
+## **NUMERICAL CONSIDERATIONS** ##
 
 The kalman\_filter.cpp file contains the Extended KF routine. It
 converts the current state to polar coordinates so that they can be
@@ -215,7 +213,7 @@ to be checked to ensure numerical accuracy of the code:
         by cos(angle). This is accomplished by coding: y\[1\]
         = atan2(sin(y\[1\]) / cos(y\[1\]))
 
-**ACCURACY OF COMPUTATIONS**
+## **ACCURACY OF COMPUTATIONS** ##
 
 The accuracy of the KF computations is calculated using a Root Mean
 Squared (RMS) formula with respect to the ground truth of the moving
